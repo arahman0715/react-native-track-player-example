@@ -16,17 +16,24 @@ import {
 
 function ProgressBar() {
   const progress = useTrackPlayerProgress();
-
+  const { position, bufferedPosition, duration } = useTrackPlayerProgress(1000, null)
   return (
-    <View style={styles.progress}>
-      <View style={{ flex: progress.position, backgroundColor: "red" }} />
-      <View
-        style={{
-          flex: progress.duration - progress.position,
-          backgroundColor: "grey"
-        }}
-      />
+    <View>
+      <Text>Track progress: {position} seconds out of {duration} total</Text>
+      <Text>Buffered progress: {bufferedPosition} seconds buffered out of {duration} total</Text>
     </View>
+    // <View style={styles.progress}>
+        // <Text>{(progress.duration)}</Text>
+      // {/* <View style={{ flex: progress.position, backgroundColor: "red" }} /> */}
+      // {/* <View
+        // style={{
+          // flex: progress.duration - progress.position,
+          // backgroundColor: "grey"
+        // }}
+      // /> */}
+    
+
+    // </View>
   );
 }
 
