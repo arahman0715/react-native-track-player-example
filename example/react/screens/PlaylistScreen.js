@@ -14,7 +14,7 @@ export default function PlaylistScreen() {
   }, []);
 
   async function setup() {
-    await TrackPlayer.setupPlayer({});
+    await TrackPlayer.setupPlayer({waitForBuffer: true});
     await TrackPlayer.updateOptions({
       stopWithApp: true,
       capabilities: [
@@ -31,7 +31,7 @@ export default function PlaylistScreen() {
     });
   }
 
-  async function togglePlayback() {
+  async function onTogglePlayback() {
     const currentTrack = await TrackPlayer.getCurrentTrack();
     if (currentTrack == null) {
       await TrackPlayer.reset();
@@ -65,7 +65,7 @@ export default function PlaylistScreen() {
         onNext={skipToNext}
         style={styles.player}
         onPrevious={skipToPrevious}
-        onTogglePlayback={togglePlayback}
+        onTogglePlayback={onTogglePlayback}
       />
       <Text style={styles.state}>{getStateName(playbackState)}</Text>
     </View>
